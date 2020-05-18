@@ -8,7 +8,7 @@ ifeq (run,$(firstword $(MAKECMDGOALS)))
 endif
 
 
-all: FTPServer
+all: PostOffice
 
 #The following lines contain the generic build options
 CC=gcc
@@ -16,7 +16,7 @@ CPPFLAGS=
 CFLAGS=-g -Werror-implicit-function-declaration
 
 #List all the .o files here that need to be linked 
-OBJS=FTPServer.o usage.o dir.o netbuffer.o util.o
+OBJS=PostOffice.o usage.o dir.o netbuffer.o util.o
 
 usage.o: usage.c usage.h
 
@@ -26,16 +26,16 @@ netbuffer.o: netbuffer.c netbuffer.h
 
 util.o: util.c util.h
 
-FTPServer.o: FTPServer.c dir.h usage.h util.h
+PostOffice.o: PostOffice.c dir.h usage.h util.h
 
-FTPServer: $(OBJS) 
-	$(CC) -o FTPServer $(OBJS) 
+PostOffice: $(OBJS) 
+	$(CC) -o PostOffice $(OBJS) 
 
 clean:
 	rm -f *.o
-	rm -f FTPServer
+	rm -f PostOffice
 
 ### ignore the below, for the hack above
 .PHONY: run
-run: FTPServer  
-	./FTPServer $(RUN_ARGS)
+run: PostOffice  
+	./PostOffice $(RUN_ARGS)
